@@ -25,6 +25,12 @@ class Blog(models.Model):
     def __str__(self):
         return self.post
 
+class Column(models.Model):
+    name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
 class Message(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)

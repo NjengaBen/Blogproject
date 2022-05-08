@@ -1,6 +1,6 @@
 {% extends 'home.html' %}
 
-{% block conent %}
+{% block content %}
 <main>
     {% if page == 'login' %}
     <div class="container">
@@ -44,15 +44,22 @@
                     <div class="card-body">
                         <form method="POST", action="">
                             {% csrf_token %}
-                            <div class="row mb-3">
-                                <div class="col-md-6">
+                            {% for field in form %} 
+                            <div class="form-group">                                
+                                <label for="fieldlabel">{{ field.label }}</label>
+                                <div>
+                                    {{ field }}
+                                </div>                                                     
+                            </div>
+                            {% endfor %}                        
+                                <!-- <div class="form-group">
                                     {% for field in form %} 
                                     <div class="form-floating mb-3 mb-md-0">                                                                               
                                         <label for="inputFirstName"> {{ field.label }}</label>
                                         {{ field }}                                       
                                     </div>
                                     {% endfor %}
-                                </div>                             
+                                </div>                              -->
                             <div class="mt-4 mb-0">
                                 <div class="d-grid"><a class="btn btn-primary btn-block" href="login.html">Create Account</a></div>
                             </div>
