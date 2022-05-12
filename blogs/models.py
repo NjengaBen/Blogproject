@@ -10,8 +10,8 @@ class User(AbstractUser):
     bio = models.TextField(null=True)
     #avatar =
 
-    def __str__(self):
-        return self.name
+    #USERNAME_FIELD =
+    REQUIRED_FIELDS = []
 
 class Blog(models.Model):
     host = models.CharField(max_length=200, null=False)
