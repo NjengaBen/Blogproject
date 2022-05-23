@@ -2,4 +2,9 @@
 
 {% block content%}
 <h5>Welcome {{ user.username }} </h5>
+{% for blog in blogs %}
+<h2>Authored by: {{ blog.host.username }}</h2>
+<h3>{{ blog.title }}</h3>
+<p>{{ blog.post }}</p>
+{% endfor %}
 {% endblock %}

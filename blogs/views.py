@@ -3,8 +3,8 @@ from multiprocessing import context
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from . forms import BlogForm, MyUserCreationForm
-from . models import Column, User, Blog, Message
+from .forms import BlogForm, MyUserCreationForm
+from .models import Column, User, Blog, Message
 
 # Create your views here.
 def loginPage(request):
@@ -12,11 +12,11 @@ def loginPage(request):
     if request.user.is_authenticated:
         return redirect('home')
 
-    if request.method == 'POST':
+    if request.method == 'POST':        
         email = request.POST.get('email')
         password = request.POST.get('password')
 
-        try:
+        try:            
             user = User.objects.get(email=email)
 
         except:
@@ -69,7 +69,7 @@ def createPost(request):
             host = request.user,
             column = column,
             title = request.POST.get('title'),
-            POST = request.POST.get('post')
+            post = request.POST.get('post'),
         )
         return redirect('home')
     
@@ -82,8 +82,8 @@ def update(request, pk):
     columns = Column.objects.all()
     if request.method == 'POST':
         column_name = request.POST.get('column')
-        column, created = Column.objects.get_or_create(name=column)        
-        blog.column = column
+        column, created = Column.objects.get_or_create(name=column_name)        
+        blog.columns = column
         blog.title = request.POST.get('title')
         blog.post = request.POST.get('post')
         blog.save()
